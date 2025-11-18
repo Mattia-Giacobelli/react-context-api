@@ -1,41 +1,36 @@
 import axios from "axios"
 import { useState } from "react"
 import { Link } from "react-router-dom"
-
+import { useContext } from "react"
+import BudgetContext from "../contexts/BudgetContext"
 
 
 export default function ProductsPage() {
 
-    //Create variable to store products data
-    const [products, setProducts] = useState([])
+    const { budgetProducts } = useContext(BudgetContext)
+
 
 
     //Create Axios call
-    const productsApi = 'https://fakestoreapi.com/products'
+    // const productsApi = 'https://fakestoreapi.com/products'
 
-    function getProducts() {
+    // function getProducts() {
 
-        axios.get(productsApi)
-            .then(res => setProducts(res.data)
-            )
-    }
+    //     axios.get(productsApi)
+    //         .then(res => setProducts(res.data)
+    //         )
+    // }
 
-    useState(getProducts, [])
-
+    // useState(getProducts, [])
 
 
     return (
         <>
             <div className="container pt-4">
 
-                <button
-                    onClick={toggleBudgetMode}
-                    className={`btn btn${budgetMode === true ? '-success' : '-light'}`}>
-                    {budgetMode === false ? "Attiva Modalità Budget" : "Disattiva Modalità Budget"}
-                </button>
 
                 <div className="row mt-4">
-                    {products.map(product => {
+                    {budgetProducts.map(product => {
 
                         return (
                             <div key={product.id} className="col-2 mb-3">

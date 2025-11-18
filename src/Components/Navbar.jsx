@@ -6,14 +6,19 @@ export default function NavBar() {
 
 
     //Get context elements
-    const { budgetMode, setBudgetMode } = useContext(BudgetContext)
+    const { budgetMode, setBudgetMode, getBudgetProducts,
+        budgetProducts, setBudgetProducts, products
+    } = useContext(BudgetContext)
 
     //Create toggle budget button
     function toggleBudgetMode() {
         if (budgetMode === true) {
             setBudgetMode(false)
+            setBudgetProducts(products)
         } else {
             setBudgetMode(true)
+            getBudgetProducts()
+
         }
     }
 
@@ -26,7 +31,7 @@ export default function NavBar() {
                 <button
                     onClick={toggleBudgetMode}
                     className={`btn btn${budgetMode === true ? '-success' : '-light'}`}>
-                    {budgetMode === false ? "Attiva Modalità Budget" : "Disattiva Modalità Budget"}
+                    {budgetMode !== false ? "Modalità Budget Attiva " : "Modalità Budget Disattiva"}
                 </button>
                 <div className="navbar-nav">
                     <NavLink className="nav-link" aria-current="page" to="/" >Home</NavLink>
