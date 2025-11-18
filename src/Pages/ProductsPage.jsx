@@ -1,8 +1,7 @@
 import axios from "axios"
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import { useContext } from "react"
-import BudgetContext from "../contexts/BudgetContext"
+
 
 
 export default function ProductsPage() {
@@ -23,17 +22,7 @@ export default function ProductsPage() {
 
     useState(getProducts, [])
 
-    //Get context elements
-    const { budgetMode, setBudgetMode } = useContext(BudgetContext)
 
-    //Create toggle budget button
-    function toggleBudgetMode() {
-        if (budgetMode === true) {
-            setBudgetMode(false)
-        } else {
-            setBudgetMode(true)
-        }
-    }
 
     return (
         <>
@@ -42,7 +31,7 @@ export default function ProductsPage() {
                 <button
                     onClick={toggleBudgetMode}
                     className={`btn btn${budgetMode === true ? '-success' : '-light'}`}>
-                    Budget Mode
+                    {budgetMode === false ? "Attiva Modalità Budget" : "Disattiva Modalità Budget"}
                 </button>
 
                 <div className="row mt-4">
