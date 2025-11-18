@@ -26,14 +26,21 @@ export default function ProductsPage() {
     //Get context elements
     const { budgetMode, setBudgetMode } = useContext(BudgetContext)
 
-
+    //Create toggle budget button
+    function toggleBudgetMode() {
+        if (budgetMode === true) {
+            setBudgetMode(false)
+        } else {
+            setBudgetMode(true)
+        }
+    }
 
     return (
         <>
             <div className="container pt-4">
 
                 <button
-
+                    onClick={toggleBudgetMode}
                     className={`btn btn${budgetMode === true ? '-success' : '-light'}`}>
                     Budget Mode
                 </button>
