@@ -3,10 +3,16 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import { Helix } from 'ldrs/react'
 import 'ldrs/react/Helix.css'
+import { useContext } from "react"
+import BudgetContext from "../contexts/BudgetContext"
 
 
 
 export default function ProductPage() {
+
+    const { setShowFilter, showFilter } = useContext(BudgetContext)
+
+    useEffect(() => { setShowFilter(false) }, [])
 
     const { id } = useParams()
 
@@ -37,13 +43,13 @@ export default function ProductPage() {
     useEffect(getProduct, [id])
 
     function handlePrev() {
-        navigate(`/Products/${product.id - 1}`)
+        navigate(`/products/${product.id - 1}`)
         setLoading(true)
 
 
     }
     function handleNext() {
-        navigate(`/Products/${product.id + 1}`)
+        navigate(`/products/${product.id + 1}`)
         setLoading(true)
 
     }

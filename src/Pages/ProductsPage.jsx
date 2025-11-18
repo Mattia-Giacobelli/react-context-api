@@ -1,5 +1,5 @@
 import axios from "axios"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { useContext } from "react"
 import BudgetContext from "../contexts/BudgetContext"
@@ -7,9 +7,7 @@ import BudgetContext from "../contexts/BudgetContext"
 
 export default function ProductsPage() {
 
-    const { budgetProducts } = useContext(BudgetContext)
-
-
+    const { budgetProducts, setShowFilter, showFilter } = useContext(BudgetContext)
 
     //Create Axios call
     // const productsApi = 'https://fakestoreapi.com/products'
@@ -21,7 +19,9 @@ export default function ProductsPage() {
     //         )
     // }
 
-    // useState(getProducts, [])
+    // useEffect(getProducts, [])
+
+    useEffect(() => { setShowFilter(true) }, [])
 
 
     return (

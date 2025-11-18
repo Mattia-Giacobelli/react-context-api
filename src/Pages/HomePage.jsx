@@ -1,7 +1,13 @@
+import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { useContext } from "react"
+import BudgetContext from "../contexts/BudgetContext"
 
 export default function HomePage() {
 
+    const { setShowFilter, showFilter } = useContext(BudgetContext)
+
+    useEffect(() => { setShowFilter(false) }, [])
 
     return (
 
@@ -15,7 +21,7 @@ export default function HomePage() {
                         <br />
                         you'll recive a rubberduck to discuss about how you got scammed on our website
                     </p>
-                    <NavLink className="btn btn-primary btn-lg" type="button" to="/Products" >
+                    <NavLink className="btn btn-primary btn-lg" type="button" to="/products" >
                         Products
                     </NavLink>
                 </div>

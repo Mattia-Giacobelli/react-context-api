@@ -14,6 +14,8 @@ import BudgetContext from "./contexts/BudgetContext"
 
 function App() {
 
+  const [showFilter, setShowFilter] = useState(false)
+
   const [budgetMode, setBudgetMode] = useState(false)
 
   //Local product obj
@@ -266,12 +268,19 @@ function App() {
   //Create a state for filtered products
   const [budgetProducts, setBudgetProducts] = useState(products)
 
+  const [priceFilter, setPriceFilter] = useState(null)
+
   //Filter products under 30$
   function getBudgetProducts() {
-    const filtered = products.filter(product => product.price <= 30)
-    setBudgetProducts(filtered)
-    console.log('it works');
+    if (priceFilter === '' && priceFilter !== null) {
+      const filtered = products.filter(product => product.price <= priceFilter)
+      setBudgetProducts(filtered)
+      console.log(Number(priceFilter));
 
+      console.log('it works');
+    } else {
+      setBudgetProducts(products)
+    }
   }
 
 
@@ -280,15 +289,16 @@ function App() {
     <>
       <BudgetContext.Provider value={{
         budgetMode, setBudgetMode, products, setProducts,
-        budgetProducts, setBudgetProducts, getBudgetProducts
+        budgetProducts, setBudgetProducts, getBudgetProducts, priceFilter,
+        setPriceFilter, showFilter, setShowFilter
       }}>
         <BrowserRouter>
           <Routes>
             <Route element={<DefaultLayout />}>
               <Route path="/" element={<HomePage />} />
-              <Route path="/Products" element={<ProductsPage />} />
-              <Route path="/Products/:id" element={<ProductPage />} />
-              <Route path="/AboutUs" element={<AboutUsPage />} />
+              <Route path="/products" element={<ProductsPage />} />
+              <Route path="/products/:id" element={<ProductPage />} />
+              <Route path="/aboutUs" element={<AboutUsPage />} />
               <Route path="/*" element={<NotFound />} />
             </Route>
           </Routes>
